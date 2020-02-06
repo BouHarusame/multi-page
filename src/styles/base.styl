@@ -1,0 +1,55 @@
+@import "variable.styl"
+* {
+  scrollbar-face-color: #5e93ef;
+  scrollbar-highlight-color: #d9e5fd;
+  scrollbar-track-color: #d9e5fd;
+}
+::-ms-clear{display: none;}
+::-ms-reveal{display: none;}
+
+::-webkit-scrollbar
+  width:10px
+  height:10px
+// ::-webkit-scrollbar-track
+
+::-webkit-scrollbar-thumb
+  background:rgba(144, 146, 152, 0.4)
+  border-radius:4px
+input::-webkit-input-safebox-button
+  display: none
+.fr
+  float: right
+.fl
+  float: left
+.clearfix::after
+  content: ""
+  display: block
+  height: 0
+  overfloe: hidden
+  clear: both
+.h30 .el-input__inner
+  height: 30px
+  line-height: 30px
+body, html
+  width:100%
+  height: 100%
+  -webkit-tap-highlight-color: transparent
+#app,.app-wrapper
+  height: 100vh;
+  &:-webkit-scrollbar
+    width:0
+.app-wrapper
+  min-width: 1300px;
+@media screen and (max-width: 1300px)
+  .app-wrapper
+    overflow-x: scroll
+@media (min-device-pixel-ratio: 1.5),(-webkit-min-device-pixel-ratio: 1.5)
+  .border-1px
+   &::after
+     -webkit-transform :scaleY(0.7)
+     transform :scaleY(0.7)
+@media (min-device-pixel-ratio: 2),(-webkit-min-device-pixel-ratio: 2)
+  .border-1px
+    &::after
+      -webkit-transform :scaleY(0.5)
+      transform :scaleY(0.5)

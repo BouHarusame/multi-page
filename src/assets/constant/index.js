@@ -1,3 +1,4 @@
+import { getQuotePortQuery, getSuperviseMethod } from 'api/import'
 export const TYPE_OF_METHODS = {
   Air: '空运',
   Ocean: '海运',
@@ -89,7 +90,7 @@ export const IMPORT_INQUIRY_SEARCH_SHORT = [{
   text: '目的港',
   filterable: true,
   optionsName: 'targetPort',
-  url: '/import/quote/portQuery',
+  request: getQuotePortQuery,
   remote: true,
   formatValue (cc) {
     return cc.targetPort
@@ -200,7 +201,7 @@ export const IMPORT_INQUIRY_SEARCH = [
     text: '目的港',
     filterable: true,
     optionsName: 'targetPort',
-    url: '/import/quote/portQuery',
+    request: getQuotePortQuery,
     remote: true,
     formatValue (cc) {
       return cc.targetPort
@@ -230,7 +231,7 @@ export const IMPORT_INQUIRY_SEARCH = [
     filterable: true,
     group: true,
     optionsName: 'superviseMethod',
-    url: '/import/quote/supervise/method',
+    request: getSuperviseMethod,
     remote: true,
     formatValue (cc) {
       return cc.shortName
@@ -259,7 +260,7 @@ export const IMPORT_INQUIRY_SEARCH_ADMIN = [
     text: '目的港',
     filterable: true,
     optionsName: 'targetPort',
-    url: '/import/quote/portQuery',
+    request: getQuotePortQuery,
     remote: true,
     formatValue (cc) {
       return cc.targetPort
@@ -282,7 +283,7 @@ export const IMPORT_INQUIRY_SEARCH_ADMIN = [
     filterable: true,
     group: true,
     optionsName: 'superviseMethod',
-    url: '/import/quote/supervise/method',
+    request: getSuperviseMethod,
     remote: true,
     formatValue (cc) {
       return cc.shortName

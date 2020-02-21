@@ -1,13 +1,14 @@
 import request from '@/utils/request'
+import axios from 'axios'
 import NProgress from 'nprogress'
 
 export function $http (params) {
   NProgress.start()
   return request({
     ...params
-  }).then((res) => {
+  }).then((data) => {
     NProgress.done()
-    return Promise.resolve(res.data)
+    return Promise.resolve(data)
   }).catch((error) => {
     NProgress.done()
     return Promise.reject(error)
@@ -33,4 +34,19 @@ export function httpDownload (type, url, data) {
     data,
     responseType: 'blob'
   })
+}
+
+export function $fetchFromJSONFile (jsonFile, type) {
+  let requesturl = 'https://www.anycase.cn/data/ac2/portal/' + jsonFile
+  if (type) {
+    requesturl = 'https://www.anycase.cn/data/ac2/mini/' + jsonFile
+  }
+  // let requesturl = HOST + '/data/ac2/portal/' + jsonFile
+  // console.log(requesturl)
+  return axios.get(requesturl)
+    .then((res) => {
+      return Promise.resolve(res.data)
+    }).catch(error => {
+      return Promise.reject(error)
+    })
 }

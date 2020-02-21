@@ -16,7 +16,7 @@
              :router="isRouter">
       <el-menu-item :class="{'active': metaIcon === 'map'}"
                     class="xx-menu-item"
-                    v-if="getRole(roles, 'AC_GLY')"
+                    v-if="getRole(userRoles, 'AC_GLY')"
                     index="console">
         <i class="fa fa-lg fa-style icon-home"></i>
         <span slot="title">首页</span>
@@ -62,11 +62,9 @@
 </template>
 
 <script>
-import { $http } from 'api/http'
-// import { mapGetters } from 'vuex'
-import store from '@/store'
-import * as types from '@/store/mutation-types'
-import { roleType } from 'common/js/utils'
+import { getMenuList } from 'api/common'
+import { mapGetters, mapMutations } from 'vuex'
+import { roleType } from 'utils/utils'
 export default {
   name: 'asidebar',
   props: {
@@ -86,12 +84,11 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters([
-    //   'activeMenuIndex',
-    //   'newInquiryCount',
-    //   'roles',
-    //   'passRoute'
-    // ])
+    ...mapGetters([
+      'activeMenuIndex',
+      'userRoles',
+      'passRoute'
+    ])
   },
   mounted () {
     this.getMenuList()
@@ -99,9 +96,16 @@ export default {
     // this.$store.dispatch('fetchUnreadInquiryCount')
   },
   methods: {
+    ...mapMutations({
+      setMenuName: 'menu/SET_MENU_NAME',
+      setPassRoute: 'menu/SET_PASS_ROUTE',
+      setNavMenus: 'menu/SET_NAV_MENUS',
+      setActiveMenuIndex: 'menu/SET_ACTIVE_MENU_INDEX'
+    }),
     getMenuList () {
-      $http('get', '/menu/list')
+      getMenuList()
         .then((res) => {
+          console.log(res)
           if (res.msg === 'success') {
             this.navMenus = res.data.records
             this.navMenus = this.navMenus.sort(this.sortMenuItem)
@@ -139,10 +143,10 @@ export default {
       window.sessionStorage.setItem('menuName', '')
       localStorage.setItem('routeList', '')
       localStorage.setItem('routeSet', '')
-      store.commit(types.SET_MENU_NAME, '')
+      this.setMenuName('')
     },
     handleSelect (key, keyPath) {
-      store.commit(types.SET_PASS_ROUTE, false)
+      this.setPassRoute(false)
       this.setRouterName(key)
       this.$router.push({ path: '/' + key })
     },
@@ -158,21 +162,20 @@ export default {
         url: 'trailerConfirm'
       }]
       const navMenus = [...this.navMenus, ...menuDetail]
-      store.commit(types.SET_NAV_MENUS, navMenus)
+      this.setNavMenus(navMenus)
       navMenus.forEach(item => {
         if (key === 'console') {
           window.sessionStorage.setItem('menuName', '首页')
-          store.commit(types.SET_MENU_NAME, '首页')
+          this.setMenuName('首页')
         } else if (item.url === key) {
-          // console.log(item.url, item.name)
           window.sessionStorage.setItem('menuName', item.name)
-          store.commit(types.SET_MENU_NAME, item.name)
+          this.setMenuName(item.name)
           if (item.url === 'importInquiryList') {
-            store.commit(types.SET_ACTIVE_MENU_INDEX, 'import')
+            this.setActiveMenuIndex('import')
           } else if (item.url === 'trailerDraft' || item.url === 'trailerConfirm') {
-            store.commit(types.SET_ACTIVE_MENU_INDEX, 'trailer')
+            this.setActiveMenuIndex('trailer')
           } else {
-            store.commit(types.SET_ACTIVE_MENU_INDEX, item.url)
+            this.setActiveMenuIndex(item.url)
           }
         }
       })
@@ -189,7 +192,7 @@ export default {
       handler () {
         this.metaIcon = (this.$route.meta && this.$route.meta.icon) || ''
         this.setRouterName(this.$route.name)
-        if (this.getRole(this.roles, 'DC') && this.$route.name === 'console') {
+        if (this.getRole(this.userRoles, 'DC') && this.$route.name === 'console') {
           this.$router.push({ path: '/toDoList' })
         }
       },
@@ -201,8 +204,8 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-@import '~common/stylus/variable'
-@import '~common/stylus/mixin'
+@import '~styles/variable'
+@import '~styles/mixin'
 .el-aside
   position relative
   background-color $color-menu-background

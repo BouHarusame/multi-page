@@ -12,7 +12,7 @@
 <script>
 import NewsDetail from './news-detail'
 import NewsList from './news-list'
-import { $http } from 'utils/http'
+import { getAcArticleList } from 'clientApi/home'
 export default {
   components: {
     NewsDetail,
@@ -87,10 +87,7 @@ export default {
       this.$emit('clickTab', tab.name)
     },
     fetchArticleNews () {
-      $http({
-        method: 'get',
-        url: '/acArticle/list/v2'
-      })
+      getAcArticleList()
         .then(res => {
           if (res && res.msg === 'success') {
             let detailList = res.data.records

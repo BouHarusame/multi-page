@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { $http } from 'utils/http'
+import { getAcArticleType } from 'clientApi/home'
 export default {
   data () {
     return {
@@ -81,10 +81,7 @@ export default {
       this.$router.push({ name: url, params })
     },
     fetchNewsList () {
-      $http({
-        method: 'get',
-        url: '/acArticle/list/type'
-      })
+      getAcArticleType()
         .then(res => {
           if (res && res.msg === 'success') {
             if (res.data && res.data.records.length !== 0) {

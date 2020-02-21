@@ -1,7 +1,10 @@
 const state = {
   toggleAside: false,
+  passRoute: false,
   menuName: '',
-  navMenus: []
+  navMenus: [],
+  activeMenuIndex: '',
+  draftCount: null
 }
 const mutations = {
   SET_TOGGLE_ASIDE (state, toggleAside) {
@@ -12,6 +15,15 @@ const mutations = {
   },
   SET_NAV_MENUS (state, navMenus) {
     state.navMenus = navMenus
+  },
+  SET_ACTIVE_MENU_INDEX (state, activeMenuIndex) {
+    state.activeMenuIndex = activeMenuIndex
+  },
+  SET_PASS_ROUTE (state, passRoute) {
+    state.passRoute = passRoute
+  },
+  SET_DRAFT_COUNT (state, draftCount) {
+    state.draftCount = draftCount
   }
 }
 const actions = {

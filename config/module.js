@@ -1,1 +1,1 @@
-exports.name = 'all'
+exports.name = 'client'

@@ -118,7 +118,7 @@
 
 <script>
 import { COMPANYADDRESS, DEPARTMENTLIST } from 'assets/constant'
-import { $http } from 'utils/http'
+import { getAcRecruitmentList } from 'clientApi/home'
 export default {
   components: {},
   props: {},
@@ -151,12 +151,7 @@ export default {
         acRecruitmentDepartment: this.acRecruitmentDepartment,
         acRecruitmentWorkingPlace: this.acRecruitmentWorkingPlace
       }
-      $http(
-        {
-          methods: 'get',
-          url: '/acRecruitment/list',
-          params
-        })
+      getAcRecruitmentList(params)
         .then(res => {
           if (res.msg === 'success') {
             let tableData = res.data && (res.data.records || [])

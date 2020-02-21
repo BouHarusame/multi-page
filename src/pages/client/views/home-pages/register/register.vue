@@ -82,8 +82,8 @@ import sha1 from 'js-sha1'
 import HomeHeader from 'client-components/home-page/header.vue'
 import BackUp from 'client-components/home-page/back-up.vue'
 import HomeFooter from 'client-components/home-page/footer.vue'
-// import { mapGetters } from 'vuex'
-import { $http } from 'utils/http'
+import { mapGetters } from 'vuex'
+import { postRegister } from 'api/common'
 import limitNum from '@/directives/limit-num'
 export default {
   name: 'increment',
@@ -124,7 +124,7 @@ export default {
     HomeFooter
   },
   computed: {
-    // ...mapGetters(['mobile'])
+    ...mapGetters(['userInfo'])
   },
   methods: {
     handleScroll () {
@@ -151,8 +151,7 @@ export default {
       this.form.contactNum = num
     },
     fetchUserInfo () {
-      console.log(this.form)
-      $http('post', '/register/info', this.form)
+      postRegister(this.form)
         .then(res => {
           if (res && res.msg === 'success') {
             this.$message.success('我们会在24小时内专属客服给您发放账号')
@@ -178,9 +177,9 @@ export default {
       let iLeft = window.screen.availWidth - width - 20
       let nonce = Date.now() + ''
       let timestamp = Date.now() + ''
-      let signature = sha1('nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.mobile + '&3d030c2ac013877aebaeaf6637e5b83a')
+      let signature = sha1('nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.userInfo.mobile + '&3d030c2ac013877aebaeaf6637e5b83a')
       signature = signature.toUpperCase()
-      window.open('https://xiangxuntrack.udesk.cn/im_client/?web_plugin_id=' + id + '&nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.mobile + '&signature=' + signature, 'CNN_WindowName', 'location=no,status=no,scrollvars=no,width=' + width + ',height=' + height + ',left=' + iLeft + ',top=' + iTop)
+      window.open('https://xiangxuntrack.udesk.cn/im_client/?web_plugin_id=' + id + '&nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.userInfo.mobile + '&signature=' + signature, 'CNN_WindowName', 'location=no,status=no,scrollvars=no,width=' + width + ',height=' + height + ',left=' + iLeft + ',top=' + iTop)
     }
   },
   mounted () {
@@ -202,7 +201,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import 'animate.css';
+// @import 'animate.css';
 .register-page
   font-family 'Microsoft YaHei'
   .content-box

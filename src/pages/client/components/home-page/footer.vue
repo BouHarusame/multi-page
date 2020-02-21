@@ -6,7 +6,7 @@
       </div>
       <div class="section-btn">
         <!-- <button class="btn">注册</button> -->
-        <router-link to="/register" class="btn">注册</router-link>
+        <router-link to="/registers" class="btn">注册</router-link>
         <!-- <div class="line"></div> -->
         <!-- <button class="btn">登录</button> -->
         <router-link to="/login" class="btn">登录</router-link>
@@ -98,7 +98,7 @@
 
 <script>
 import sha1 from 'js-sha1'
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'homeFooter',
   data () {
@@ -354,7 +354,7 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters(['mobile'])
+    ...mapGetters(['userInfo'])
   },
   methods: {
     handleToDetail (url, params) {
@@ -371,9 +371,9 @@ export default {
       let iLeft = window.screen.availWidth - width - 20
       let nonce = Date.now() + ''
       let timestamp = Date.now() + ''
-      let signature = sha1('nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.mobile + '&3d030c2ac013877aebaeaf6637e5b83a')
+      let signature = sha1('nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.userInfo.mobile + '&3d030c2ac013877aebaeaf6637e5b83a')
       signature = signature.toUpperCase()
-      window.open('https://xiangxuntrack.udesk.cn/im_client/?web_plugin_id=' + id + '&nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.mobile + '&signature=' + signature, 'CNN_WindowName', 'location=no,status=no,scrollvars=no,width=' + width + ',height=' + height + ',left=' + iLeft + ',top=' + iTop)
+      window.open('https://xiangxuntrack.udesk.cn/im_client/?web_plugin_id=' + id + '&nonce=' + nonce + '&timestamp=' + timestamp + '&web_token=' + this.userInfo.mobile + '&signature=' + signature, 'CNN_WindowName', 'location=no,status=no,scrollvars=no,width=' + width + ',height=' + height + ',left=' + iLeft + ',top=' + iTop)
     }
   }
 }

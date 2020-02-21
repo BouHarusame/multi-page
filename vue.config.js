@@ -58,6 +58,21 @@ module.exports = {
     if (process.env.NODE_ENV === 'production') {
       // 返回一个将会被合并的对象
       return {
+        performance: {
+          hints: 'warning',
+          // 入口起点的最大体积 整数类型（以字节为单位）
+          maxEntrypointSize: 50000000,
+          // 生成文件的最大体积 整数类型（以字节为单位 300k）
+          maxAssetSize: 30000000,
+          // 只给出 js 文件的性能提示
+          assetFilter: function (assetFilename) {
+            return assetFilename.endsWith('.js')
+          }
+        },
+        externals: {
+          'BMap': 'BMap',
+          'BMapLib': 'BMapLib'
+        },
         optimization: {
           minimizer: [
             new TerserPlugin({
@@ -69,16 +84,38 @@ module.exports = {
               }
             })
           ]
+        },
+        name: name,
+        resolve: {
+          alias: {
+            '@': resolve('src'),
+            'api': resolve('src/api'),
+            'utils': resolve('src/utils'),
+            'assets': resolve('src/assets'),
+            'styles': resolve('src/styles'),
+            'components': resolve('src/components'),
+            'clientApi': resolve('src/pages/client/api'),
+            'clientViews': resolve('src/pages/client/views'),
+            'client-components': resolve('src/pages/client/components')
+          }
         }
       }
     } else {
       return {
         name: name,
+        externals: {
+          'BMap': 'BMap',
+          'BMapLib': 'BMapLib'
+        },
         resolve: {
           alias: {
             '@': resolve('src'),
+            'api': resolve('src/api'),
             'utils': resolve('src/utils'),
             'assets': resolve('src/assets'),
+            'styles': resolve('src/styles'),
+            'components': resolve('src/components'),
+            'clientApi': resolve('src/pages/client/api'),
             'clientViews': resolve('src/pages/client/views'),
             'client-components': resolve('src/pages/client/components')
           }
@@ -87,8 +124,8 @@ module.exports = {
     }
   },
   chainWebpack (config) {
-    config.plugins.delete('preload') // TODO: need test
-    config.plugins.delete('prefetch') // TODO: need test
+    config.plugins.delete('preload-index') // TODO: need test
+    config.plugins.delete('prefetch-index') // TODO: need test
     // set svg-sprite-loader
     config.module
       .rule('svg')

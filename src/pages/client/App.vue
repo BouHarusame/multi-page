@@ -27,7 +27,7 @@ export default {
 }
 </script>
 <style lang="stylus">
-#app {
+body .el-table th.gutter{
   font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
  -webkit-font-smoothing: antialiased;
 }

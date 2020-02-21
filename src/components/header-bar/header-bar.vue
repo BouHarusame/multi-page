@@ -54,8 +54,7 @@
 </template>
 
 <script>
-// import { mapGetters, mapMutations } from 'vuex'
-import { $http } from 'api/http'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'header-bar',
   data () {
@@ -63,19 +62,19 @@ export default {
       currentLanguage: '中文',
       error: false,
       visible: false,
-      userInfo: {},
+      // userInfo: {},
       dpVisible: false,
       fullScreen: true,
       toggle: true
     }
   },
   computed: {
-    // ...mapGetters([
-    //   'toggleAside',
-    //   'avatar',
-    //   'menuName',
-    //   'draftCount'
-    // ]),
+    ...mapGetters([
+      'toggleAside',
+      'userInfo',
+      'menuName',
+      'draftCount'
+    ]),
     count: function () {
       return this.draftCount ? this.draftCount : sessionStorage.getItem('truckDraftsCount')
     }
@@ -166,16 +165,17 @@ export default {
     showMenu () {
       this.setToggleAside(!this.toggleAside)
     },
-    // ...mapMutations({
-    //   setToggleAside: 'SET_TOGGLE_ASIDE'
-    // }),
+    ...mapMutations({
+      setToggleAside: 'menu/SET_TOGGLE_ASIDE'
+    }),
+    ...mapActions({
+      getInfo: 'user/getInfo'
+    }),
     fetchUserInfo () {
-      $http('get', '/user/info')
+      this.getInfo()
         .then(res => {
           if (res && res.msg === 'success') {
-            this.userInfo = res.data
-            this.$store.commit('SET_MOBILE', res.data.mobile)
-            this.$store.commit('SET_AVATAR', res.data.avatar)
+            // this.userInfo = res.data
           }
           if (res && res.msg === 'fail') {
             this.$message.error(res.verror)
@@ -192,12 +192,11 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        window.localStorage.removeItem('dr_token')
-        window.localStorage.removeItem('dr_roles')
+        window.localStorage.removeItem('anycase_token')
         window.localStorage.removeItem('routeList')
         window.localStorage.removeItem('routeSet')
-        window.localStorage.removeItem('dr_role')
-        window.localStorage.removeItem('dr_roles')
+        window.localStorage.removeItem('user_role')
+        window.localStorage.removeItem('user_roles')
         window.sessionStorage.clear()
         this.$router.push({ name: 'login' })
       }).catch(() => {
@@ -207,18 +206,14 @@ export default {
   mounted () {
     this.fetchUserInfo()
     this.error = this.$route.name === 'The404Error'
-  },
-  watch: {
-    avatar () {
-      this.userInfo.avatar = this.avatar
-    }
   }
+
 }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
-@import '~common/stylus/variable'
-@import '~common/stylus/mixin'
-@import '../../common/iconfont/iconfont.css'
+@import '~styles/variable'
+@import '~styles/mixin'
+@import '~assets/iconfont/iconfont.css'
 .app-header
   width 100%
   height 45px

@@ -59,7 +59,7 @@ import joinUsContent from './components/join-us-content'
 import connectUsContent from './components/connect-us-content'
 import BackUp from 'client-components/home-page/back-up.vue'
 import HomeFooter from 'client-components/home-page/footer.vue'
-import { $http } from 'utils/http'
+import { getAcArticleDetail } from 'clientApi/home'
 import { timeFomatter } from 'utils/utils'
 import { setTimeout } from 'timers'
 export default {
@@ -158,11 +158,7 @@ export default {
       this.fetchArticleDetail(this.articleId)
     },
     fetchArticleDetail (articleId) {
-      $http({
-        method: 'get',
-        url: '/acArticle/detail',
-        params: { param: articleId }
-      })
+      getAcArticleDetail()
         .then(res => {
           if (res && res.msg === 'success') {
             let acticleContent = res.data

@@ -9,19 +9,25 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "dev": "node config/dev.js",
-    "service": "node config/build.js service",
-    "client": "node config/build.js client"
+    "build:service": "node config/build.js service",
+    "build:client": "node config/build.js client"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-language": "^0.10.1",
     "animate.css": "^3.7.2",
+    "area-data-vue": "^1.0.9",
+    "area-linkage-vue": "^5.1.2",
     "axios": "^0.19.2",
     "core-js": "^3.4.4",
+    "echarts": "^4.6.0",
     "element-ui": "^2.13.0",
     "js-sha1": "^0.6.0",
+    "mapbox-gl": "^1.7.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "vue": "^2.6.10",
     "vue-awesome-swiper": "^3.1.3",
+    "vue-cropper": "^0.5.0",
     "vue-router": "^3.1.3",
     "vuex": "^3.1.2"
   },

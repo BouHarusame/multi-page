@@ -10,12 +10,12 @@ const config = {
       client: {
         entry: 'src/pages/client/main.js',
         template: 'public/index.html',
-        filename: 'client.html'
+        filename: 'client/index.html'
       },
       service: {
         entry: 'src/pages/service/main.js',
         template: 'public/index.html',
-        filename: 'service.html'
+        filename: 'service/index.html'
       }
     }
   },
@@ -25,7 +25,7 @@ const config = {
       index: {
         entry: 'src/pages/client/main.js',
         template: 'public/index.html',
-        filename: 'client.html'
+        filename: 'index.html'
       }
     }
   },
@@ -35,7 +35,7 @@ const config = {
       index: {
         entry: 'src/pages/service/main.js',
         template: 'public/index.html',
-        filename: 'service.html'
+        filename: 'index.html'
       }
     }
   }

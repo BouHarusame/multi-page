@@ -1,0 +1,476 @@
+.el-menu
+  border: none
+.el-menu .el-menu-item
+  height: 48px
+  line-height: 48px
+.el-menu-item:hover
+  background: #fff!important
+  color: #0A5EE7!important
+.el-submenu__title
+  height: 48px
+  line-height: 48px
+.el-submenu__title:hover
+  background-color rgb(0, 0, 0, 0.5)!important
+  color: #0A5EE7!important
+.el-menu-item-group__title
+  padding: 0
+.el-submenu .el-menu-item
+  min-width: 150px
+.el-table
+  color $font-color-grey
+  .new-order
+    background #fff7eb
+.el-table th>.cell
+  font-size: $font-size-medium
+  font-weight: bold
+  color: $font-color-black
+  span
+    font-weight bold
+.el-table .cell
+  font-size: $font-size-medium
+
+.el-input.is-active .el-input__inner, .el-input__inner:focus
+  border-color: #0d5ee7!important
+.si-select
+  .el-input.is-active .el-input__inner, .el-input__inner:focus
+    border-color: transparent!important
+.olsa_select .popper__arrow
+  left: 60px!important
+.si-select-list
+  .popper__arrow
+    left: 60px!important
+
+.weight-input .el-input-group__append
+  padding: 0 5px!important
+
+.el-range-editor--small .el-range-input
+  font-size 12px
+
+.el-pagination
+  text-align: center
+  margin-top: 30px
+  font-size: 12px
+.el-pagination.is-background .el-pager li.active
+  background: #F6AB39
+.pagination-slot .el-input
+  width: 30px
+.pagination-slot .el-input__inner
+  height: 28px
+  line-height: 28px
+  padding: 0
+.el-pagination.is-background 
+  .el-pager 
+    li:not(.disabled).active
+      background-color:#F6AB39!important
+.xx-pagination.el-pagination span:not([class*=suffix])
+  font-size: 12px!important
+
+.el-radio__input.is-checked .el-radio__inner
+  border-color: $font-color-menu-active
+  background: $font-color-menu-active
+.el-radio__input.is-checked+.el-radio__label
+  color: $font-color-menu-active
+
+.customer-dialog
+  height: 90%
+  overflow: auto
+  .xx_dialog_footer
+    text-align: center
+  .add-item-btn
+    padding: 0
+    width: 110px
+    height: 40px
+    line-height: 40px
+    text-align: center
+    background: #f67340
+    color: #fff
+    border-radius: 4px
+    margin-bottom: 20px
+  .save-btn
+    background: #3077EA
+    margin: 0 auto
+    &:hover, &:focus
+      background: #3077EA
+      color: #fff
+.customer-dialog
+  .el-dialog__body
+    padding-top: 10px
+  .customer-form-title
+    padding-left: 13px
+    margin: 16px 0
+    font-size: 16px
+    color: $font-color-menu-active
+
+    span
+      padding-left: 10px
+.xx-tab-common
+  .el-tabs__active-bar
+    background: #0d5ee7;
+    height: 4px;
+.aside-badge
+  .el-badge__content.is-fixed
+    top: 25px
+    right: -5px
+.table-header
+  background-color: $table-header-background-color
+  color: $table-header-font-color
+  font-weight: bold
+.search-btn
+  color #fff
+  border none
+  background $font-color-yellow!important
+  &:hover
+    color #fff
+.revert-search-btn
+  color $font-color-menu-active
+  border 1px solid $font-color-menu-active
+  background #FFF7EB !important
+.revert-search-btn:hover
+  color  $font-color-white !important
+  border 1px solid $font-color-menu-active !important
+  background $font-color-yellow !important
+[v-cloak]
+  display: none
+.update-step
+  .el-upload-dragger
+    width: 260px
+    padding: 0
+    height: 135px
+    .el-icon-upload
+      margin-top: 20px
+.step-info-wrapper
+  .default-class
+    .el-step__icon
+      // background: url('../../views/detail-info/img/default.png') no-repeat center
+      background-size: 100% 100%
+      width: 30px
+      height: 30px
+      border: transparent
+      top: -3px
+      border-radius: initial
+      .el-step__icon-inner
+        color: $step-yellow
+    .el-step__main
+      .el-step__title
+        color: $step-yellow
+        position: relative
+        top: -5px
+    .is-finish
+      color: $step-yellow
+      border-color: $step-yellow
+    .el-step__head
+      .el-step__line
+        background-color: $step-green
+        .el-step__line-inner
+          border-color: $step-green
+  .current-default
+    .el-step__head
+      .el-step__line
+        background-color: $step-green
+        .el-step__line-inner
+          border-color: $step-green
+      .el-step__icon
+        color: #FFFFFF
+        // background: url('../../views/detail-info/img/default-select.png') no-repeat center
+        background-size: 100% 100%
+        width: 40px
+        height: 40px
+        top: -7px
+        border-radius: initial
+        .el-step__icon-inner
+          color: #FFFFFF
+    .el-step__main
+      .el-step__title
+        position: relative
+        color: $step-yellow
+        top: -10px
+  .wait-class
+    .is-finish
+      color: $step-gray
+      border-color: $step-gray
+
+  .current-wait
+    .el-step__head
+      .el-step__line
+        background-color: $step-green
+        .el-step__line-inner
+
+          border-color: $step-gray
+      .el-step__icon
+        width: 35px
+        height: 35px
+        color: #FFFFFF
+        background: $step-gray
+        border-color: $step-gray
+        top: -4px
+        .is-text
+          border: 2px solid $step-green !important
+    .el-step__main
+      .el-step__title
+        color: $step-gray !important
+  .current-finish
+    .el-step__head
+      .el-step__line
+        .el-step__line-inner
+          border-color: $step-green
+      .el-step__icon
+        width: 35px
+        height: 35px
+        color: #FFFFFF
+        background: $step-green
+        border-color: $step-green
+        top: -4px
+        .is-text
+          border: 2px solid $step-green !important
+    .el-step__main
+      .el-step__title
+        color: $step-green !important
+  .finish-class
+    .el-step__head
+      .el-step__line
+        background-color: $step-green
+        .el-step__line-inner
+          border-color: $step-green
+      .el-step__icon
+        border-color: $step-green
+        color: $step-green
+    .el-step__main
+      .el-step__title
+        color: $step-green !important
+
+.order-anycase
+  .el-button
+    width 90px!important
+  .search-conditions .el-select
+    width 120px!important
+  .job-number
+      cursor pointer!important
+      color #F6AB39
+      &:hover
+        color #06c
+  .order-btn
+    color $font-color-menu-active
+    border 1px solid $font-color-menu-active
+    background #FFF7EB !important
+  .search-dc-form
+    .el-date-editor--daterange
+      width 230px !important
+    .el-select
+      width 100px !important
+    .el-input
+      width 100px !important
+.ac-expense-wrapper, .customer-expense-wrapper
+  .job-number
+    cursor pointer!important
+    color #F6AB39
+    &:hover
+      color #06c
+.order-search
+  .el-date-editor.el-input
+    width: 100%
+.quick-order
+  .el-checkbox-group
+    display flex
+    flex 1
+    flex-wrap wrap
+  .search-item
+    .el-button
+      width: 114px
+      height: 30px
+      line-height: 18px
+      padding: 5px
+      font-size: 14px
+.cpwd-content 
+  .el-dialog
+    width 580px !important
+    height 600px !important
+  .el-dialog__header
+    border 1px solid rgba(220, 219, 219, 1)
+    text-align left
+  text-align left
+  .el-dialog__headerbtn .el-dialog__close
+    font-size 24px
+  .el-dialog__title
+    font-weight bold
+  .el-dialog--center .el-dialog__body
+    padding 15px 25px 10px
+.oi-slect-port
+  width: 271px
+  .st-item-info
+    font-size: 12px
+    color: #a2b6c8
+    line-height: 22px
+    margin-bottom: 5px
+    padding: 10px 20px
+  .st-item-text
+    width: 88px
+    font-size: 14px
+    margin-bottom: 5px
+    padding: 0 20px
+    cursor: pointer
+    position relative
+  .st-item-rm-active
+    color: #0098e4
+    &:after
+      display inline-block
+      width 40px
+      border-bottom 3px solid #0098e4
+      content ''
+      position absolute
+      left 20px
+      bottom -7px
+      z-index 99
+  em
+    position: absolute
+    left: 18px
+    width: 44px
+    height: 3px
+    background: #0098e4
+    transition: left .1s
+    z-index: 1
+.oi-slect-arrive-port
+  margin-left: -135px!important
+.oi-slect-arrive-port .popper__arrow
+  left: 155px!important
+.ocean-fcl-list-wrapper
+  .ocean_list2
+    .el-button
+      background rgba(0,0,0,0)
+      border: 0
+      padding: 0
+.ocean-lcl-list-wrapper
+  .lcl-item2, .lcl-item3
+    .el-button
+      background rgba(0,0,0,0)
+      border: 0
+      padding: 0
+      margin-top: 36px
+      color: $font-color-red
+      font-size: 14px
+.el-loading-mask
+  z-index: 99
+.search-form
+  .el-form-item
+    margin-right: 6px!important
+    margin-bottom: 0!important
+  .search-btn
+    color #fff
+    border none
+    background $color-button-background !important
+  .el-date-editor--daterange
+    width 228px !important
+.to-do-list
+  .el-badge__content
+    background $font-color-red
+.el-tabs__item
+  font-weight bold
+  font-size 14px!important
+  color $font-color-black!important
+.is-active
+  color $font-color-yellow!important
+.el-tabs__active-bar
+  background $font-color-yellow!important
+.el-tabs__nav-wrap::after
+  height 1px
+  background $border-color-light-grey
+.el-aside
+  .el-menu
+    .el-menu-item
+      color $font-color-menu!important
+      background $color-menu-background !important
+      font-size $font-size-medium
+      font-weight bold 
+      box-sizing border-box
+      padding-left 13px!important
+      color $font-color-menu !important
+      &:hover
+        background rgba(0, 0, 0, 0.9)!important
+    .el-submenu
+      box-sizing border-box
+      .el-menu-item
+        padding-left 44px!important
+        color $font-color-menu !important
+        &:hover
+            background rbga(0,0,0,0.9)!important
+      .el-menu
+        .el-submenu__title
+          padding-left 44px!important
+        .el-submenu
+          .el-menu-item
+            padding-left 60px!important
+    .is-active
+      > .el-submenu__title
+        color: #fff!important
+      .is-active
+        color: $font-color-yellow!important
+    .el-submenu__title
+      background $color-menu-background !important
+      color $font-color-menu !important
+      box-sizing border-box
+      font-weight bold
+      padding-left 13px!important
+      span
+        font-size $font-size-medium
+        font-weight bold
+      &:hover
+        background rgba(0,0,0,0.9)!important
+  .el-submenu
+    .el-menu-item
+      background $color-menu-child-background !important
+  .delete-is-active
+    .is-active
+      .el-submenu__title
+        color #bfcbd9 !important
+      .is-active
+        color #bfcbd9 !important
+.ocean-fcl-inquiry
+  .el-checkbox
+    color $font-color-grey
+.ocean-lcl-inquiry
+  .el-checkbox
+    color $font-color-grey
+.footer,.home-header,.fixed-button,.float-end-box,.nav-meun-right,.sign-in-wrapper
+  .el-dialog__header
+    display none!important
+  .el-dialog__body
+    padding 0!important
+  .el-form-item
+    margin 0
+  .el-input__inner
+    background rgba(0,0,0,0)
+    border 0
+  .el-form-item__label
+    color #0B0A0A
+    padding 0
+.float-end,.fixed-button
+  .quote-btn,.reserve-btn
+    span
+      font-weight bold
+.fixed-bottom .register
+  span
+    font-weight bold
+// popver start
+.trailer_list_popver_baoguanlink
+  color: #1E8DED
+  height: 20px
+  line-height: 20px
+  cursor: pointer
+.pre-booking-poper
+  color: #F6AB39
+  background: #FFF7EB
+  text-align: center
+
+.connecte-right,.nav-meun-right
+  .el-button
+    span
+      font-weight bold
+.sign-in
+  .el-form-item__label
+    height 28px!important
+    line-height 28px!important
+  .el-input__inner
+    text-overflow: ellipsis !important
+    white-space: nowrap !important
+    overflow: hidden !important
+    display: block !important
+    width: 240px !important

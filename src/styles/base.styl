@@ -40,6 +40,29 @@ body, html
     width:0
 .app-wrapper
   min-width: 1300px;
+  
+.infoWindow p
+  line-height: 30px
+.BMap_scaleCtrl
+  bottom: 60px!important
+  left: 226px!important
+.BMap_cpyCtrl {
+  display: none;
+}
+.anchorBL {
+  display: none;
+}
+.pagination-slot
+  display: inline-block
+  height: 30px
+  line-height: 30px
+  i
+    font-style: normal
+.jump-page
+  display: inline-block
+  padding: 0 5px
+  margin-right: 5px
+  cursor: pointer
 @media screen and (max-width: 1300px)
   .app-wrapper
     overflow-x: scroll
@@ -53,3 +76,22 @@ body, html
     &::after
       -webkit-transform :scaleY(0.5)
       transform :scaleY(0.5)
+
+@media screen and (max-width 1321px)
+  .ac-expense-wrapper
+    .search-wrapper
+      .search-item
+        .search-zt-item1
+          width 182px !important
+@media screen and (max-width 1500px)
+  .ac-expense-wrapper
+    .search-wrapper
+      .search-item
+        .search-zt-item2
+          width 182px !important
+@media screen and (min-width 1501px) 
+  .ac-expense-wrapper
+    .search-wrapper
+      .search-item
+        .search-zt-item2
+          width 100px !important

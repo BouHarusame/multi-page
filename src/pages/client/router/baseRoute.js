@@ -1,5 +1,6 @@
 import { homePC } from './homePC'
-
+let basePath = process.env.NODE_ENV === 'development' ? '/client' : ''
+console.log(basePath)
 export const baseRoute = [
   {
     path: '/login',
@@ -8,23 +9,23 @@ export const baseRoute = [
       require(['clientViews/login/login'], resolve)
     }
   },
-  // {
-  //   path: '/register',
-  //   name: 'register',
-  //   component: resolve => {
-  //     require(['portal-pages/register/register'], resolve)
-  //   },
-  //   meta: {
-  //     parentName: 'home'
-  //   }
-  // },
-  // {
-  //   path: '*',
-  //   name: 'The404Error',
-  //   component: resolve => {
-  //     require(['views/The404Page/The404Page'], resolve)
-  //   }
-  // },
+  {
+    path: '/register',
+    name: 'register',
+    component: resolve => {
+      require(['clientViews/home-pages/register/register'], resolve)
+    },
+    meta: {
+      parentName: 'home'
+    }
+  },
+  {
+    path: '*',
+    name: 'The404Error',
+    component: resolve => {
+      require(['clientViews/404Error/404Error'], resolve)
+    }
+  },
   // // 询价费用说明页面
   // {
   //   path: '/wgInstruction',

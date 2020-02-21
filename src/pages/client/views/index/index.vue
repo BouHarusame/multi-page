@@ -65,7 +65,7 @@ export default {
     HeaderBar
   },
   computed: {
-    ...mapGetters(['toggleAside', 'userRoles', 'menuName', 'userInfo', 'navMenus'])
+    ...mapGetters(['toggleAside', 'menuName', 'navMenus', 'userRoles', 'userInfo'])
   },
   data () {
     return {
@@ -112,19 +112,19 @@ export default {
     setRouteMenu () {
       // console.log(this.menuName, this.$route.name, !this.routeSet.has(this.menuName))
       let menuName = ''
-      // console.log(this.navMenus)
+      console.log(this.navMenus, 11111)
       this.navMenus.forEach(item => {
         if (item.url === this.$route.name) {
           menuName = item.name
         }
       })
       if (menuName === this.menuName) {
-        if (this.menuName && !this.routeSet.has(this.menuName)) {
-          this.routeList.push({ name: this.menuName, routerName: this.$route.name })
-          this.routeSet.add(this.menuName)
-          localStorage.setItem('routeList', JSON.stringify(this.routeList))
-          localStorage.setItem('routeSet', JSON.stringify(this.routeSet))
-        }
+        // if (this.menuName && !this.routeSet.has(this.menuName)) {
+        //   this.routeList.push({ name: this.menuName, routerName: this.$route.name })
+        //   this.routeSet.add(this.menuName)
+        //   localStorage.setItem('routeList', JSON.stringify(this.routeList))
+        //   localStorage.setItem('routeSet', JSON.stringify(this.routeSet))
+        // }
       }
     },
     openDialog (id) {
@@ -143,22 +143,25 @@ export default {
         this.$refs.headerSlide.style.paddingLeft = 160 - document.documentElement.scrollLeft + 'px'
       }
     },
-    ...mapMutations({
+    ...mapMutations('menu', {
       setToggleAside: 'SET_TOGGLE_ASIDE',
       setMenuName: 'SET_MENU_NAME'
+    }),
+    ...mapMutations('user', {
+      setUserRoles: 'SET_USER_ROLES'
     })
   },
   created () {
     const roles = window.localStorage.getItem('dr_roles') ? JSON.parse(window.localStorage.getItem('dr_roles')) : []
     if (roles) {
-      this.$store.commit('SET_ROLES', roles)
+      this.setUserRoles(roles)
     } else {
       this.$message.error('用户身份验证失败')
       setTimeout(() => {
         this.$router.push('/login')
-        window.localStorage.removeItem('dr_token')
+        window.localStorage.removeItem('anycase_token')
 
-        window.localStorage.removeItem('dr_roles')
+        window.localStorage.removeItem('user_roles')
       }, 1500)
     }
   },
@@ -200,8 +203,8 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "~common/stylus/variable"
-  @import "~common/stylus/mixin"
+  @import "~styles/variable"
+  @import "~styles/mixin"
 .el-container
   height : 100%
   .aside-mask

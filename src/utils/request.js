@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
-import store from '@/store'
+import store from '@/pages/client/store/store'
 import { getToken } from '@/utils/auth'
-// import { HOST } from './config'
+import { HOST } from './config'
 // create an axios instance
 const service = axios.create({
-  // baseURL: HOST, // url = base url + request url
-  baseURL: 'http://www.roadshare.com:7001/api', // url = base url + request url
+  baseURL: HOST, // url = base url + request url
+  // baseURL: 'http://www.roadshare.com:7001/api', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 30000 // request timeout
 })
@@ -20,7 +20,7 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      config.headers['token'] = getToken()
     }
     return config
   },

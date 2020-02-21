@@ -1,24 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
-// import { $http } from 'utils/http'
+import { $http } from 'utils/http'
 import { getLocalStorage } from 'utils/utils'
 
-import store from '../store/store'
-// import * as types from '../store/mutation-types'
 import { baseRoute } from './baseRoute'
-// import { consoleAC } from './consoleAC'
+import { consoleClient } from './consoleClient'
 Vue.use(Router)
+
+// const VueRouterPush = Router.prototype.push
+// Router.prototype.push = function push (to) {
+//   return VueRouterPush.call(this, to).catch(err => err)
+// }
 
 const router = new Router({
   mode: 'history',
-  routes: [...baseRoute],
+  routes: [...baseRoute, ...consoleClient],
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
   }
 })
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  console.log(to)
   const routeName = to.name.toLowerCase()
   const routeHomeName = to.meta.parentName ? to.meta.parentName.toLowerCase() : ''
   let isMobile = window.sessionStorage.getItem('isMobile')
@@ -52,27 +56,30 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-  const token = getLocalStorage('dr_token')
-  const roles = getLocalStorage('dr_roles')
+  const token = getLocalStorage('anycase_token')
+  const roles = getLocalStorage('user_roles')
   if (!token || !roles) {
     router.push({ path: '/login' })
   }
-  // $http('get', '/shiro/token/validate?token=' + token).then(res => {
-  //   if (res.msg === 'success') {
-  //     next()
-  //   } else {
-  //     window.localStorage.removeItem('dr_token')
-  //     window.localStorage.removeItem('dr_roles')
-  //     window.sessionStorage.clear()
-  //     router.push({ path: '/login' })
-  //   }
-  // }).catch(() => {
-  //   window.localStorage.removeItem('dr_token')
-  //   window.localStorage.removeItem('dr_roles')
-  //   window.sessionStorage.clear()
-  //   router.push({ path: '/login' })
-  // })
-  next(...to)
+  $http({
+    method: 'get',
+    url: '/shiro/token/validate?token=' + token
+  }).then(res => {
+    if (res.msg === 'success') {
+      next()
+    } else {
+      window.localStorage.removeItem('anycase_token')
+      window.localStorage.removeItem('user_roles')
+      window.sessionStorage.clear()
+      router.push({ path: '/login' })
+    }
+  }).catch(() => {
+    window.localStorage.removeItem('anycase_token')
+    window.localStorage.removeItem('user_roles')
+    window.sessionStorage.clear()
+    router.push({ path: '/login' })
+  })
+  // next(...to)
 })
 // 路由匹配的回调函数
 router.afterEach(to => {
@@ -83,8 +90,8 @@ router.afterEach(to => {
   }
   const routeName = to.name.toLowerCase()
   if (routeName !== 'login' && routeName !== 'The404Error') {
-    store.dispatch('fetchNewMsgCount')
-    store.dispatch('fetchUnreadInquiryCount')
+    // store.dispatch('fetchNewMsgCount')
+    // store.dispatch('fetchUnreadInquiryCount')
   }
   if (routeName === 'about-us' || routeName === 'solution' || routeName === 'platform' || routeName === 'industry' || routeName === 'serve') {
     window.scrollTo(0, 0)

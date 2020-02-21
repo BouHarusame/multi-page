@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <Login></Login>
-  </div>
+  <Login></Login>
 </template>
 
 <script>
-import Login from '@/common/sign-in/sign-in'
+import Login from '@/components/sign-in/sign-in'
 export default {
+  name: 'login',
   components: {
     Login
   }

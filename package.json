@@ -17,7 +17,7 @@
     "animate.css": "^3.7.2",
     "area-data-vue": "^1.0.9",
     "area-linkage-vue": "^5.1.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.4.4",
     "echarts": "^4.6.0",
     "element-ui": "^2.13.0",
